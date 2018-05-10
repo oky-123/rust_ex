@@ -1,6 +1,6 @@
 use std::thread;
 use std::time::Duration;
-use std::sync::{Mutex, Arc};
+use std::sync::Mutax;
 
 struct Philosopher {
     name: String,
@@ -30,42 +30,32 @@ impl Philosopher {
     }
 }
 
-// tableを表す構造体
 struct Table {
     // Mutex... 並列処理を制御するための機構
     // 内容に同時アクセスできるのは1スレッドに限定されている
     forks: Vec<Mutex<()>>,
-    // めちゃくちゃざっくり言うと0か1でセマフォのようなもの
 }
 
 fn main() {
-    // Atomic Reference Count
-    // 複数スレッドからtableを参照するため
-    let table = Arc::new(Table { forks: vec![
-        Mutex::new(()),
-        Mutex::new(()),
-        Mutex::new(()),
-        Mutex::new(()),
-        Mutex::new(()),
+    let table = Arc::new(Table { fors: vec![
+        Mutex::new(),
+        Mutex::new(),
+        Mutex::new(),
+        Mutex::new(),
+        Mutex::new(),
     ]});
 
     let philosophers = vec![
-        Philosopher::new("Judith Butler", 0, 1),
-        Philosopher::new("Gilles Deleuze", 1, 2),
-        Philosopher::new("Karl Marx", 2, 3),
-        Philosopher::new("Emma Goldman", 3, 4),
-        Philosopher::new("Michel Foucault", 0, 4),
+        Philosopher::new("Judith Butler"),
+        Philosopher::new("Gilles Deleuze"),
+        Philosopher::new("Karl Marx"),
+        Philosopher::new("Emma Goldman"),
+        Philosopher::new("Michel Foucault"),
     ];
 
     let handles: Vec<_> = philosophers.into_iter().map(|p| {
-        // Arcのメソッド
-        let table = table.clone();
-        // 参照カウントが増加する
-        // いつ変数を解放するか分からなくなる
-
-        // 所有権をクロージャ内に移動
         thread::spawn(move || {
-            p.eat(&table);
+            p.eat();
         })
     }).collect();
 
