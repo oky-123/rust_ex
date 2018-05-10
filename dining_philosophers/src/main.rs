@@ -33,4 +33,8 @@ fn main() {
             p.eat();
         })
     }).collect();
+
+    for h in handles {
+        h.join().unwrap();
+    }
 }
