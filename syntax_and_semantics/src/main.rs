@@ -117,6 +117,7 @@ fn main() {
 
     // ここではv1とv2が使える!
     println!("{:?}", v1);
+    println!("{:?}", answer);
 
     // 借用ルール
     // ・借用は全て所有者のスコープより長く存続してはならない
@@ -132,6 +133,13 @@ fn main() {
 
 
     /* 4.9 ライフタイム */
+    let y = &5;
+    let x = Foo { x: y };
+
+    println!("Foo");
+    println!("{:?}", x);
+    println!("x in Foo is {}", x.x());
+
 }
 
 // 引数の型は宣言しなければならない
@@ -148,9 +156,25 @@ fn diverges() -> ! {
     panic!("This function never returns!");
 }
 
+// 暗黙的なライフタイム宣言
 fn foo(v1: &Vec<i32>, v2: &Vec<i32>) -> i32 {
     // v1とv2についての作業を行う
 
     // 答えを返す
     42
+}
+
+// 明示的なライフタイム宣言
+// <>はジェネリクスパラメータ
+fn bar<'a>(x: &'a i32) {
+}
+
+// structのライフタイム宣言
+#[derive(Debug)]
+struct Foo<'a> {
+    x: &'a i32,
+}
+
+impl<'a> Foo<'a> {
+    fn x(&self) -> &'a i32 { self.x }
 }
