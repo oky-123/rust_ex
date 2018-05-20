@@ -140,6 +140,15 @@ fn main() {
     println!("{:?}", x);
     println!("x in Foo is {}", x.x());
 
+    /* 4.10  */
+    /* 4.11 構造体 */
+    // ミュータビリティは束縛に付与できる属性なので構造体自体には付与できない
+    let mut point = Point { x: 0, y:0 };
+    point.x = 5;
+    let point = point;
+    println!("point");
+    println!("{:?}", point);
+
 }
 
 // 引数の型は宣言しなければならない
@@ -177,4 +186,10 @@ struct Foo<'a> {
 
 impl<'a> Foo<'a> {
     fn x(&self) -> &'a i32 { self.x }
+}
+
+#[derive(Debug)]
+struct Point {
+    x: i32,
+    y: i32,
 }
