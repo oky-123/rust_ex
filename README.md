@@ -1,7 +1,7 @@
 # rust_ex
 
 ## rust_turtorial
-こちらのrust チュートリアルを進める  
+こちらのrust チュートリアルを進める。  
 https://doc.rust-lang.org/book/second-edition/index.html  
 
 日本語版はこちら(ちょっと章の構成が違います)  
