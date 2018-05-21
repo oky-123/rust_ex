@@ -18,5 +18,16 @@ fn main() {
             return;
         }
     };
+    // File構造体のopen関連関数でファイルをオープンする
+    // 失敗した場合は, Resultが返される
+    // 下の方でもう一度filenameを使うためにここでは&filenameと参照で渡していることに注意
+    let file = match File::open(&filename) {
+        // 成功すれば中身を引き出す
+        Ok(file) => file,
+        Err(e) => {
+            println!("An error occured while opening file {}:{}", filename, e);
+            return;
+        }
+    };
 
 }
