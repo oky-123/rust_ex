@@ -1,3 +1,5 @@
+extern crate regex;
+use regex::Regex;
 // File structをuse
 use std::fs::File;
 // BufReader struct, BufRead crateをuse
@@ -9,6 +11,24 @@ fn usage() {
     println!("rsgrep PATTERN FILENAME");
 }
 fn main() {
+    // 引数からパターンを取り出す
+    let pattern = match env::args().nth(1) {
+        Some(pattern) => pattern,
+        None => {
+            usage();
+            return;
+        }
+    };
+    // 取り出した文字列からRegexを作る
+    let reg = match Regex::new(&pattern) {
+        Ok(reg) => reg,
+        Err(e) => {
+            println!("invalid regexp {}: {}", pattern, e);
+            return;
+        }
+    };
+
+    // ファイル名を取り出す
     let filename = match env::args().nth(2) {
         // あった場合取り出す
         Some(filename) => filename,
@@ -44,7 +64,10 @@ fn main() {
                 return;
             }
         };
-        println!("{}", line);
+        // 取り出したlineがマッチしていれば出力
+        if reg.is_match(&line) {
+            println!("{}", line);
+        }
     }
 
 }
