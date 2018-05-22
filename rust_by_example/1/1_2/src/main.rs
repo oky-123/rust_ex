@@ -26,7 +26,7 @@ fn main() {
     println!("{number:>0width$}", number=1, width=6);
 
     // 引数の数が正しいかのチェックも行ってくれます。
-    println!("My name is {0}, {1} {0}", "Bond");
+    println!("My name is {0}, {1} {0}", "Bond", "James");
     // FIXME ^ Add the missing argument: "James"
 
     // `i32`保持する `Structure` という名の構造体を定義します.
@@ -34,6 +34,6 @@ fn main() {
 
     // このようにカスタム型を用いる場合、少々扱いが複雑になります。
     // 以下は動作しません。
-    println!("This struct `{}` won't print...", Structure(3));
+    // println!("This struct `{}` won't print...", Structure(3));
     // FIXME ^ Comment out this line.
 }
