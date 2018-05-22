@@ -30,10 +30,14 @@ fn main() {
     // FIXME ^ Add the missing argument: "James"
 
     // `i32`保持する `Structure` という名の構造体を定義します.
-    struct Structure(i32);
+    // struct Structure(i32);
 
     // このようにカスタム型を用いる場合、少々扱いが複雑になります。
     // 以下は動作しません。
     // println!("This struct `{}` won't print...", Structure(3));
     // FIXME ^ Comment out this line.
+    
+    // Display pi
+    let pi: f32 = 22.0/7.0;
+    println!("Pi is roughly {num:.*}", 3, num=pi);
 }
