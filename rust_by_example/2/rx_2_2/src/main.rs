@@ -1,3 +1,5 @@
+use std::fmt::{self, Formatter, Display};
+
 // タプルを関数の引数及び返り値として使用している。
 fn reverse(pair: (i32, bool)) -> (bool, i32) {
     // `let`でタプルの中の値を別の変数に束縛することができる。
@@ -9,6 +11,19 @@ fn reverse(pair: (i32, bool)) -> (bool, i32) {
 // 以下の構造体は後ほど「演習」で用いる。
 #[derive(Debug)]
 struct Matrix(f32, f32, f32, f32);
+
+impl Display for Matrix {
+    fn fmt(&self, f: &mut Formatter) -> fmt::Result {
+        try!(write!(f, "( {} {})", self.0, self.1));
+        try!(write!(f, "\n"));
+        write!(f, "( {} {})", self.2, self.3)
+    }
+}
+
+fn transpose(matrix: &Matrix) -> Matrix {
+    // `let`でタプルの中の値を別の変数に束縛することができる。
+    Matrix(matrix.0, matrix.2, matrix.1, matrix.3)
+}
 
 fn main() {
     // 様々な型を値に持つタプル
@@ -44,6 +59,7 @@ fn main() {
     println!("{:?}, {:?}, {:?}, {:?}", a, b, c, d);
 
     let matrix = Matrix(1.1, 1.2, 2.1, 2.2);
-    println!("{:?}", matrix)
-
+    println!("Debug: {:?}", matrix);
+    println!("Display normal: \n{}", matrix);
+    println!("Display reverse: \n{}", transpose(&matrix));
 }
