@@ -89,7 +89,7 @@ fn main() {
 
     // エラー！`rectangle`はイミュータブルだがこのメソッドはミュータブルなオブジェクトを
     // 必要とする。
-    //rectangle.translate(1.0, 0.0);
+    // rectangle.translate(1.0, 0.0);
     // TODO ^ この行をアンコメントしてみましょう。
 
     // Okay! Mutable objects can call mutable methods
@@ -101,6 +101,6 @@ fn main() {
     pair.destroy();
 
     // エラー！先ほどの`destroy`で`pair`はすでに消費されてしまっている。
-    //pair.destroy();
+    // pair.destroy();
     // TODO ^ この行をアンコメントしてみましょう。
 }
