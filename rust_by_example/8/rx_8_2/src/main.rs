@@ -28,5 +28,6 @@ fn main() {
     let print = || println!("Professor X's name is: {}", professor_x);
 
     // クロージャを実行
-    print();
+     let a = print();
+     println!("{:?}", a);
 }
