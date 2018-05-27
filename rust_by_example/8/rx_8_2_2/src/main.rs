@@ -12,11 +12,15 @@ fn main() {
     use std::mem;
 
     let greeting = "hello";
-    // コピーではなくmoveが起きる型
+    // A non-copy type.
+    // `to_owned` creates owned data from borrowed one
+    // let _farewell = "good bye";
+    // let mut farewell = _farewell.to_owned();
     let mut farewell = "good bye".to_owned();
 
     // 変数を二つ補足
     let diary = || {
+        // greeting is by reference.
         println!("I said {}.", greeting);
 
         // farewell の値を変更するのでこの時点で FnMutが必要
