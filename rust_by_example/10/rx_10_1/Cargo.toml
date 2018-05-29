@@ -1,0 +1,6 @@
+[package]
+name = "rx_10_1"
+version = "0.1.0"
+authors = ["oky-123 <oky123.ia@gmail.com>"]
+
+[dependencies]
