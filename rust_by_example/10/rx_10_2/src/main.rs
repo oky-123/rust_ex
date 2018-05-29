@@ -14,9 +14,7 @@ mod my {
     impl<T> BlackBox<T> {
         // パブリックなコンストラクタメソッドを持つ構造体
         pub fn new(contents: T) -> BlackBox<T> {
-            BlackBox {
-                contents: contents,
-            }
+            BlackBox { contents: contents }
         }
     }
 }
@@ -24,7 +22,9 @@ mod my {
 fn main() {
     // パブリックなフィールドを持つパブリックな構造体は、通常通り
     // インスタンス化できる。
-    let white_box = my::WhiteBox { contents: "public information" };
+    let white_box = my::WhiteBox {
+        contents: "public information",
+    };
 
     // フィールドにも普通にアクセスできる。
     println!("The white box contains: {}", white_box.contents);

@@ -65,5 +65,4 @@ fn main() {
     // エラー！`private_nested`はプライベートなモジュール 。
     //my::private_nested::function();
     // TODO ^ 試しにこの行をアンコメントしてみましょう。
-
 }
